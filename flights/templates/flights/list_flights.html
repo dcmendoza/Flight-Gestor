@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Vuelos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .national-flight {
+            color: blue;
+        }
+        .international-flight {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Lista de Vuelos</h1>
+        <ul class="list-group">
+            {% for flight in flights %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="{% if flight.type == 'Nacional' %}national-flight{% elif flight.type == 'Internacional' %}international-flight{% endif %}">
+                        {{ flight.id }} - {{ flight.name }} - {{ flight.type }}
+                    </span>
+                    <span>${{ flight.price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'home' %}" class="btn btn-link mt-3">Volver al Inicio</a>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
